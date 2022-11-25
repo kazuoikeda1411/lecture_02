@@ -1,56 +1,44 @@
 import java.util.ArrayList;
+import java.util.List;
 
-public class Car {
+public record Car(String name, int speed) {
 
-	private String name;
-	private int speed;
-
-	public Car (String name, int speed) {
-		this.name = name;
-		this.speed = speed;
+	public static void generateBikeList() {
+		List<Car> carList = new ArrayList<>();
+		carList.add(new Car("トヨタ", 70));
+		carList.add(new Car("ベンツ", 150));
+		carList.forEach(s -> System.out.println("車種：" + s.name + "/" + "速度：" + s.speed + "km/h"));
+		System.out.println("---------------------------------------");
 	}
 
-
-	public String getName () {
-		return name;
-	}
-
-	public int getSpeed () {
-		return speed;
-	}
-
-
-	public static void generateBikeList () {
-		ArrayList<Car> list = new ArrayList<> ();
-		list.add (new Car ("トヨタ", 70));
-		list.add (new Car ("ベンツ", 150));
-		list.forEach (s -> System.out.println ("車種：" + s.name + "/" + "速度：" + s.speed));
-	}
-
-	public void crash () {
-		if (this.getSpeed () > 80) {
-			System.out.print ("「");
-			for (int i = 0; i < this.getSpeed (); i = i + 10) {
-				System.out.print ("!");
+	public void crash() {
+		if (this.speed() > 80) {
+			System.out.print("「");
+			for (int i = 0; i < this.speed(); i = i + 10) {
+				System.out.print("!");
 			}
-			System.out.print ("」");
-			if (this.getSpeed () > 250) {
-				System.out.println ("事故を起こしました。");
-			} else if (80 < this.getSpeed ()) {
-				System.out.println ("違反切符を切られました。");
+			System.out.print("」");
+			if (this.speed() > 250) {
+				System.out.println("事故を起こしました。");
+				System.out.println("---------------------------------------");
+			} else {
+				System.out.println("違反切符を切られました。");
+				System.out.println("---------------------------------------");
 			}
 		}
 	}
 
-	public void isSpeeding () {
+	public void isSpeeding() {
+		System.out.println("走行速度を測定しました。");
 		if (this.speed > 80) {
-			System.out.println (this.getName () + "はスピード違反です。速度を落としてください。");
+			System.out.println(this.name() + "はスピード違反です。速度を落としてください。");
 		} else {
-			System.out.println (this.getName () + "は安全運転です。");
+			System.out.println(this.name() + "は安全運転です。");
+			System.out.println("---------------------------------------");
 		}
 	}
 
-	public void clean () {
-		System.out.println ("");
+	public void clean() {
+		System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 	}
 }
