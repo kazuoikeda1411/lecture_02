@@ -1,15 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public record Car(String name, int speed) {
-
-	public static void generateBikeList() {
-		List<Car> carList = new ArrayList<>();
-		carList.add(new Car("トヨタ", 70));
-		carList.add(new Car("ベンツ", 150));
-		carList.forEach(s -> System.out.println("車種：" + s.name + "/" + "速度：" + s.speed + "km/h"));
-		System.out.println("---------------------------------------");
-	}
 
 	public void crash() {
 		if (this.speed() > 80) {
@@ -23,12 +12,11 @@ public record Car(String name, int speed) {
 				System.out.println("---------------------------------------");
 			} else {
 				System.out.println("違反切符を切られました。");
-				System.out.println("---------------------------------------");
 			}
 		}
 	}
 
-	public void isSpeeding() {
+	public void showIsSpeedingOrSafeDriving() {
 		System.out.println("走行速度を測定しました。");
 		if (this.speed > 80) {
 			System.out.println(this.name() + "はスピード違反です。速度を落としてください。");
